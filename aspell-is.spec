@@ -5,11 +5,12 @@
 %define languageenglazy Icelandic
 %define languagecode is
 %define lc_ctype is_IS
+%define aspellrelease 0.60
 
 Summary:	%{languageenglazy} files for aspell
 Name:		aspell-%{languagecode}
 Version:	0.51.1.0
-Release:	1
+Release:	2
 Group:		System/Internationalization
 License:	GPLv2
 Url:		http://aspell.net/
@@ -35,10 +36,11 @@ An %{languageenglazy} dictionary for use with aspell, a spelling checker.
 # don't use configure macro
 ./configure
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
+mv $RPM_BUILD_ROOT/%{_libdir}/aspell-%{aspellrelease}/*slenska.alias $RPM_BUILD_ROOT/%{_libdir}/aspell-%{aspellrelease}/íslenska.alias
 
 mkdir -p %{buildroot}/%{_datadir}/aspell
 mkdir -p %{buildroot}/%{_libdir}/aspell
